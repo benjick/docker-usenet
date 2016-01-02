@@ -1,6 +1,6 @@
 # Usenet in Docker
 
-Create a usenet downloader setup easily with the power of Docker.
+Create a usenet downloader setup easily with the power of Docker. All built on Alpine.
 
 ## Todo
 
@@ -22,6 +22,7 @@ nzbget:
     - "6789:6789"
   volumes:
     - ./config:/usr/local/etc
+    - ./media:/volumes/media
 
 sonarr:
   image: benjick/sonarr
@@ -48,12 +49,14 @@ Then just run `docker-compose up -d` to start the containers. To shut them down 
 
 A folder named `config` will be created and will contain all databases etc for the applications. This is the folder you want to backup to keep your settings etc. It *should* be all you need to backup, settings-wise.
 
-In this example we are creating a folder called `media` (`./media:/volumes/media/drive1`) which can be accessed inside the application with /volumes/media/drive1. If you want more mountpoints you can just do something like
+In this example we are creating a folder called `media` (`./media:/volumes/media`) which can be accessed inside the application with `/volumes/media`. If you want more mountpoints you can just do something like this:
 
 ```yml
   volumes:
-    - ./media:/volumes/media/drive1
+    - ./media:/volumes/media/tv
     - /some/other/dir:/volumes/media/movies
 ```
 
-to add other directories
+and then use `/volumes/media/tv` and `/volumes/media/movies` instead of just `/volumes/media`.
+
+**Note:** If you do this, don't save any files to /volumes/media because that will be inside the container, not on your drive, which means if you somehow destroy the container the data might get lost.
