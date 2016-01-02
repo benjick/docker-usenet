@@ -4,8 +4,13 @@ RUN apk add --no-cache nzbget@testing
 
 EXPOSE 6789
 
+VOLUME /volumes/config
+VOLUME /volumes/media
+
 COPY docker-entrypoint.sh /entrypoint.sh
-#RUN chmod +x /entrypoint.sh
+
 RUN mkdir -p /usr/local/etc
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["nzbget", "-s"]
+CMD ["nzbget", "-s", "-c", "/volumes/config/nzbget.conf"]
+
+#nzbget -s -c /volumes/config/nzbget.conf
