@@ -1,0 +1,13 @@
+nzbget:
+  build: nzbget
+  ports:
+    - "6789:6789"
+  volumes:
+    - ./config:/usr/local/etc
+
+sonarr:
+  build: sonarr
+  ports:
+    - "8989:8989"
+  volumes:
+    - ./config/sonarr:/volumes/config/sonarr
