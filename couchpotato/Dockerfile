@@ -4,7 +4,7 @@ RUN apk add --no-cache \
   py-lxml \
   curl
 
-EXPOSE 8989
+EXPOSE 5050
 
 RUN mkdir /opt && curl -o /opt/cp.tar.gz -SL https://github.com/RuudBurger/CouchPotatoServer/archive/build/3.0.1.tar.gz \
 	&& cd /opt && tar -xzf cp.tar.gz && rm cp.tar.gz && ls -la CouchPotatoServer-build-3.0.1
