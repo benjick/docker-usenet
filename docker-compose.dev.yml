@@ -13,3 +13,12 @@ sonarr:
     - "8989:8989"
   volumes:
     - ./config/sonarr:/volumes/config/sonarr
+
+couchpotato:
+  build: couchpotato
+  links:
+    - nzbget
+  ports:
+    - "5050:5050"
+  volumes:
+    - ./config/couchpotato:/root/.couchpotato
