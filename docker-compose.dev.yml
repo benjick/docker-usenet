@@ -1,7 +1,18 @@
+proxy:
+  image: jwilder/nginx-proxy
+  container_name: nginx-proxy
+  ports:
+    - "80:80/tcp"
+  volumes:
+    - /var/run/docker.sock:/tmp/docker.sock:ro
+
 nzbget:
   build: nzbget
   ports:
     - "6789:6789"
+  environment:
+    VIRTUAL_PORT: 6789
+    VIRTUAL_HOST: "nzb.local"
   volumes:
     - ./config/nzbget:/volumes/config
     - ./media:/volumes/media
@@ -12,6 +23,9 @@ sonarr:
     - nzbget
   ports:
     - "8989:8989"
+  environment:
+    VIRTUAL_PORT: 8989
+    VIRTUAL_HOST: "sonarr.local"
   volumes:
     - ./config/sonarr:/volumes/config/sonarr
 
@@ -21,5 +35,27 @@ couchpotato:
     - nzbget
   ports:
     - "5050:5050"
+  environment:
+    VIRTUAL_PORT: 5050
+    VIRTUAL_HOST: "couchpotato.local"
   volumes:
     - ./config/couchpotato:/root/.couchpotato
+
+transmission:
+  image: transmission:latest
+  restart: always
+  ports:
+    - "9091:9091"
+    - "51413:51413"
+    - "51413:51413/udp"
+  environment:
+    VIRTUAL_PORT: 9091
+    VIRTUAL_HOST: "torrent.local"
+  environment:
+    - ADMIN_USER=$ADMIN_USER
+    - ADMIN_PASS=$ADMIN_SECRET
+  volumes:
+    - volumes/transmission/downloads:/var/lib/transmission-daemon/downloads
+    - volumes/transmission/incomplete:/var/lib/transmission-daemon/incomplete
+    - volumes/transmission/resume:/etc/transmission-daemon/resume
+    - volumes/transmission/torrents:/etc/transmission-daemon/torrents
