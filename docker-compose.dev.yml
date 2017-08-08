@@ -4,7 +4,7 @@ proxy:
   ports:
     - "80:80/tcp"
   environment:
-    DEFAULT_HOST: nzbget.local
+    DEFAULT_HOST: "nzbget.local"
   volumes:
     - /var/run/docker.sock:/tmp/docker.sock:ro
 
