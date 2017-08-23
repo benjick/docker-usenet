@@ -14,7 +14,7 @@ nzbget:
     - "6789:6789"
   environment:
     VIRTUAL_PORT: 6789
-    VIRTUAL_HOST: "nzb.local"
+    VIRTUAL_HOST: "nzbget.local"
   volumes:
     - ./config/nzbget:/volumes/config
     - ./media:/volumes/media
