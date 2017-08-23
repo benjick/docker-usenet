@@ -24,10 +24,10 @@ You probably want Docker Compose to boot these containers
 
 ###
 | Service Hostname | application |
-|==================|=============|
+| --- | --- |
 | torrrent.local   | BitTorrent  |
 | sonaar.local     | Sonaar      |
-| couchpotato.local| couchpotato |
+| couchpotato.local | couchpotato |
 | nzbget.local (default, localhost goes here) | nzbget |
 
 ### Example docker-compose.yml
