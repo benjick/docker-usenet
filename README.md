@@ -44,7 +44,7 @@ proxy:
     - /var/run/docker.sock:/tmp/docker.sock:ro
 
 nzbget:
-  build: nzbget
+  image: benjick/nzbget
   ports:
     - "6789:6789"
   environment:
@@ -55,7 +55,7 @@ nzbget:
     - ./media:/volumes/media
 
 sonarr:
-  build: sonarr
+  image: benjick/sonarr
   links:
     - nzbget
   ports:
@@ -67,7 +67,7 @@ sonarr:
     - ./config/sonarr:/volumes/config/sonarr
 
 couchpotato:
-  build: couchpotato
+  image: benjick/couchpotato
   links:
     - nzbget
   ports:
@@ -100,7 +100,7 @@ transmission:
 
 If you don't need `couchpotato`, just remove it's section from the compose-file. When you point for example sonarr to a downloader (nzbget) you put nzbget.local instead of localhost:6789 or whatever you usually do.
 
-Then just run `docker-compose up -d` to start the containers. To shut them down just do `docker-compose stop` (or `kill` if you're in a hurry).
+Then `export ADMIN_USER=<insertAdminHere>` and `export ADMIN_SECRET=invalidPassword`. Finally run `docker-compose up -d` to start the containers. To shut them down just do `docker-compose stop` (or `kill` if you're in a hurry).
 
 A folder named `config` will be created and will contain all databases etc for the applications. This is the folder you want to backup to keep your settings etc. It *should* be all you need to backup, settings-wise.
 
