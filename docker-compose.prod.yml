@@ -1,5 +1,5 @@
 proxy:
-  build: nginx-proxy 
+  image: jwilder/nginx-proxy 
   container_name: nginx-proxy
   ports:
     - "80:80/tcp"
@@ -9,7 +9,7 @@ proxy:
     - /var/run/docker.sock:/tmp/docker.sock:ro
 
 nzbget:
-  build: nzbget
+  image: benjick/nzbget
   ports:
     - "6789:6789"
   environment:
@@ -20,7 +20,7 @@ nzbget:
     - ./media:/volumes/media
 
 sonarr:
-  build: sonarr
+  image: benjick/sonarr
   links:
     - nzbget
   ports:
@@ -32,7 +32,7 @@ sonarr:
     - ./config/sonarr:/volumes/config/sonarr
 
 couchpotato:
-  build: couchpotato
+  image: benjick/couchpotato
   links:
     - nzbget
   ports:

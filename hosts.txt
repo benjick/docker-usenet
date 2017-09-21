@@ -1,0 +1,2 @@
+127.0.10.1   localhost.localnetwork localhost nzbget.local sonarr.local couchpotato.local torrent.local
+::1    localhost.localnetwork localhost nzbget.local sonarr.local couchpotato.local torrent.local
