@@ -1,13 +1,12 @@
 # Usenet in Docker
 
-Create a usenet downloader setup easily with the power of Docker. All built on Alpine.
+Create a usenet downloader and torrent node setup easily with the power of Docker. All built on Alpine.
 
 ## Todo
 
 * Headphones
 * LazyLibrarian
 * Media storage/mounting
-* Torrents?
 
 ## Usage
 
