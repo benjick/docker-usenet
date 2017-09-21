@@ -1,5 +1,5 @@
 proxy:
-  image: jwilder/nginx-proxy
+  build: nginx-proxy 
   container_name: nginx-proxy
   ports:
     - "80:80/tcp"
